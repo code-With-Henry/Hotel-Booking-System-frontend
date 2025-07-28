@@ -1,6 +1,4 @@
 
-
-
 import { createContext, useState, useEffect, type ReactNode } from "react"
 import axios from "axios"
 
@@ -13,10 +11,20 @@ interface UserType {
   userType: "admin" | "member"
 }
 
+interface RegisterInput {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+  contactPhone?: string
+  address?: string
+}
+
 interface AuthContextType {
   user: UserType | null
   login: (email: string, password: string) => Promise<UserType>
   logout: () => void
+  register: (data: RegisterInput) => Promise<void>
   loading: boolean
 }
 
@@ -51,7 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const userData: UserType = {
         id: userId.toString(),
-        userId, 
+        userId,
         firstName,
         lastName,
         email: userEmail,
@@ -69,6 +77,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  const register = async (data: RegisterInput) => {
+    try {
+      await axios.post("/auth/register", data)
+    } catch (err) {
+      throw err
+    }
+  }
+
   const logout = () => {
     setUser(null)
     localStorage.removeItem("user")
@@ -77,8 +93,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, register, loading }}>
       {children}
     </AuthContext.Provider>
   )
 }
+
