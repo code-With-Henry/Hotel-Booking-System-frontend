@@ -1,5 +1,5 @@
 // API configuration and base setup
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000"
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://hotel-booking-system.azurewebsites.net/api"
 
 class ApiService {
   private baseURL: string
