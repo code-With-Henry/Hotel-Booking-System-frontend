@@ -54,7 +54,7 @@ export default function Hotels() {
   const fetchHotels = async () => {
     setLoading(true)
     try {
-      const response = await axios.get("http://localhost:4000/api/hotels")
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/hotels`);
       if (Array.isArray(response.data)) {
         const allHotels: Hotel[] = response.data
 
