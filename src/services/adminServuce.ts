@@ -49,12 +49,12 @@ export const adminService = {
 
   // ✅ Bookings management — matches backend: `/api/bookings/bookings`
   async getAllBookings(): Promise<Booking[]> {
-    return apiService.get<Booking[]>("/bookings")
+    return apiService.get<Booking[]>("/bookings/bookings")
   },
 
   // ✅ Support tickets — matches backend: `/api/tickets`
   async getAllSupportTickets(): Promise<SupportTicket[]> {
-    return apiService.get<SupportTicket[]>("/tickets")
+    return apiService.get<SupportTicket[]>("//support-tickets")
   },
 
   // ✅ Users management
