@@ -1,12 +1,11 @@
-
-
 import { apiService } from "./api"
 import type { User, UserBooking } from "../types"
 
 export const userService = {
+  // ✅ Fixed route: /my/bookings
   async getUserBookings(): Promise<UserBooking[]> {
     try {
-      return await apiService.get<UserBooking[]>("/bookings/my/bookings")
+      return await apiService.get<UserBooking[]>("/my/bookings")
     } catch (error: any) {
       if (error.message?.includes("No bookings found")) {
         return []
@@ -32,12 +31,12 @@ export const userService = {
     return apiService.get<any[]>("/user/rooms")
   },
 
-  // ✅ FIXED: Fetch user's support tickets using correct route
+  // ✅ Fetch user's support tickets using correct route
   async getUserSupportTickets(userId: number): Promise<any[]> {
     return apiService.get<any[]>(`/support-tickets/user/${userId}`)
   },
 
-  // ✅ FIXED: Create a new support ticket using correct route
+  // ✅ Create a new support ticket using correct route
   async createSupportTicket(ticketData: {
     userId: number
     subject: string
@@ -46,4 +45,3 @@ export const userService = {
     await apiService.post("/tickets", ticketData)
   },
 }
-
