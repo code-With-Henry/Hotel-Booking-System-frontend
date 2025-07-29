@@ -5,7 +5,7 @@ export const userService = {
   // ✅ Fixed route: /my/bookings
   async getUserBookings(): Promise<UserBooking[]> {
     try {
-      return await apiService.get<UserBooking[]>("/my/bookings")
+      return await apiService.get<UserBooking[]>("/bookings/my/bookings")
     } catch (error: any) {
       if (error.message?.includes("No bookings found")) {
         return []
@@ -33,7 +33,7 @@ export const userService = {
 
   // ✅ Fetch user's support tickets using correct route
   async getUserSupportTickets(userId: number): Promise<any[]> {
-    return apiService.get<any[]>(`/support-tickets/user/${userId}`)
+    return apiService.get<any[]>(`/tickets/user/${userId}`)
   },
 
   // ✅ Create a new support ticket using correct route
