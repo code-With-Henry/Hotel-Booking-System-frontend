@@ -1,8 +1,6 @@
 
-
 import { apiService } from "./api"
 import type { Hotel, Room, Booking, SupportTicket, User } from "../types"
-
 
 export interface CreateUserInput {
   firstName: string
@@ -12,11 +10,10 @@ export interface CreateUserInput {
   contactPhone?: string | null
   address?: string | null
   userType: "member" | "admin"
-  
 }
 
 export const adminService = {
-  // Hotels management
+  // ✅ Hotels management
   async getAllHotels(): Promise<Hotel[]> {
     return apiService.get<Hotel[]>("/hotels")
   },
@@ -33,7 +30,7 @@ export const adminService = {
     return apiService.delete(`/hotels/${id}`)
   },
 
-  // Rooms management
+  // ✅ Rooms management
   async getAllRooms(): Promise<Room[]> {
     return apiService.get<Room[]>("/rooms")
   },
@@ -50,17 +47,17 @@ export const adminService = {
     return apiService.delete(`/rooms/${id}`)
   },
 
-  // Bookings management
+  // ✅ Bookings management — matches backend: `/api/bookings/bookings`
   async getAllBookings(): Promise<Booking[]> {
     return apiService.get<Booking[]>("/bookings")
   },
 
-  // Support tickets
+  // ✅ Support tickets — matches backend: `/api/tickets`
   async getAllSupportTickets(): Promise<SupportTicket[]> {
-    return apiService.get<SupportTicket[]>("/tickets") 
+    return apiService.get<SupportTicket[]>("/tickets")
   },
 
-  // Users management
+  // ✅ Users management
   async getAllUsers(): Promise<User[]> {
     return apiService.get<User[]>("/users")
   },
@@ -77,4 +74,3 @@ export const adminService = {
     return apiService.delete(`/users/${id}`)
   },
 }
-

@@ -1,3 +1,5 @@
+
+
 import { apiService } from "./api"
 import type { User, UserBooking } from "../types"
 
@@ -30,17 +32,18 @@ export const userService = {
     return apiService.get<any[]>("/user/rooms")
   },
 
-  // ✅ Fetch user's support tickets using userId
+  // ✅ FIXED: Fetch user's support tickets using correct route
   async getUserSupportTickets(userId: number): Promise<any[]> {
-    return apiService.get<any[]>(`/tickets/user/${userId}`)
+    return apiService.get<any[]>(`/support-tickets/user/${userId}`)
   },
 
-  // ✅ Create a new support ticket
+  // ✅ FIXED: Create a new support ticket using correct route
   async createSupportTicket(ticketData: {
     userId: number
     subject: string
     description: string
   }): Promise<void> {
-    await apiService.post("/tickets", ticketData)
+    await apiService.post("/support-tickets", ticketData)
   },
 }
+
