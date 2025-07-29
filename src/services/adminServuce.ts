@@ -54,7 +54,7 @@ export const adminService = {
 
   // ✅ Support tickets — matches backend: `/api/tickets`
   async getAllSupportTickets(): Promise<SupportTicket[]> {
-    return apiService.get<SupportTicket[]>("//support-tickets")
+    return apiService.get<SupportTicket[]>("/tickets")
   },
 
   // ✅ Users management

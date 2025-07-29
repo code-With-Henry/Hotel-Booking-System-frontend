@@ -43,7 +43,7 @@ export const userService = {
     subject: string
     description: string
   }): Promise<void> {
-    await apiService.post("/support-tickets", ticketData)
+    await apiService.post("/tickets", ticketData)
   },
 }
 
