@@ -60,7 +60,7 @@ export default function Register() {
     <div
       className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
       style={{
-        backgroundImage: "url('/register.jpeg')",
+        backgroundImage: "",
       }}
     >
       <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-md max-w-md w-full space-y-8">
