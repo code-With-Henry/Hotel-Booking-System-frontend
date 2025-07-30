@@ -276,41 +276,40 @@ export default function BookingPage() {
 
     setSubmitting(true)
 
-    const response = await fetch("/api/bookings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    try {
+      const response: ApiResponse<any> = await apiService.post("/bookings", {
         ...bookingData,
         userId: user.userId,
         roomId: room.roomId,
-      }),
-    })
-
-    const data = await response.json()
-
-    if (!response.ok) {
-      toast.error(data?.error || "Failed to book room.")
-      setSubmitting(false)
-      return
-    }
-
-    toast.success("Booking successful!")
-
-    setTimeout(() => {
-      navigate("/payment", {
-        state: {
-          roomId: room.roomId,
-          total: total.toFixed(2),
-          user: {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            phone: user.phone,
-          },
-          bookingData,
-        },
       })
-    }, 1500)
+
+      if (!response.success) {
+        toast.error(response.message || "Failed to book room.")
+        return
+      }
+
+      toast.success("Booking successful!")
+
+      setTimeout(() => {
+        navigate("/payment", {
+          state: {
+            roomId: room.roomId,
+            total: total.toFixed(2),
+            user: {
+              firstName: user.firstName,
+              lastName: user.lastName,
+              email: user.email,
+              phone: user.phone,
+            },
+            bookingData,
+          },
+        })
+      }, 1500)
+    } catch (err: any) {
+      toast.error(err.message || "Booking failed.")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const handleMpesaPayment = async () => {

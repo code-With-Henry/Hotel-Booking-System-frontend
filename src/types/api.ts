@@ -1,4 +1,4 @@
-// API Response Types
+// ================== API Response Types ==================
 export interface ApiResponse<T = any> {
   success: boolean
   message: string
@@ -14,7 +14,7 @@ export interface PaginatedResponse<T> {
   totalPages: number
 }
 
-// Request/Response Types for Authentication
+// ================== Authentication Types ==================
 export interface LoginRequest {
   email: string
   password: string
@@ -44,7 +44,7 @@ export interface AuthResponse {
   token: string
 }
 
-// Hotel and Room Types
+// ================== Hotel & Room Types ==================
 export interface HotelFilters {
   location?: string
   minRating?: number
@@ -54,7 +54,7 @@ export interface HotelFilters {
   limit?: number
 }
 
-// Booking Types
+// ================== Booking Types ==================
 export interface CreateBookingRequest {
   roomId: number
   checkInDate: string
@@ -83,7 +83,7 @@ export interface BookingWithDetails {
   userEmail?: string
 }
 
-// Payment Types
+// ================== Payment Types ==================
 export interface CreatePaymentRequest {
   bookingId: number
   amount: string
@@ -94,7 +94,7 @@ export interface CreatePaymentRequest {
   cardholderName?: string
 }
 
-// Support Ticket Types
+// ================== Support Ticket Types ==================
 export interface CreateTicketRequest {
   subject: string
   description: string
@@ -113,7 +113,7 @@ export interface SupportTicketWithUser {
   userEmail?: string
 }
 
-// M-Pesa Types
+// ================== M-Pesa Payment Types ==================
 export interface MpesaInitiateRequest {
   amount: number
   phoneNumber: string
@@ -133,6 +133,3 @@ export interface MpesaInitiateResponse {
   ResponseDescription: string
   CustomerMessage: string
 }
-
-
-
