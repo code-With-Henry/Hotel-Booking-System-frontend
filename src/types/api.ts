@@ -112,3 +112,27 @@ export interface SupportTicketWithUser {
   userLastName?: string
   userEmail?: string
 }
+
+// M-Pesa Types
+export interface MpesaInitiateRequest {
+  amount: number
+  phoneNumber: string
+  bookingDetails?: {
+    roomId: number
+    hotelName: string
+    checkInDate: string
+    checkOutDate: string
+    guests: number
+  }
+}
+
+export interface MpesaInitiateResponse {
+  MerchantRequestID: string
+  CheckoutRequestID: string
+  ResponseCode: string
+  ResponseDescription: string
+  CustomerMessage: string
+}
+
+
+
